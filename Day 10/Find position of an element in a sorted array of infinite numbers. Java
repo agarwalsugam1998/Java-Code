@@ -1,0 +1,49 @@
+/******************************************************************************
+                
+                Searching in an Infinite Sorted Array
+                
+                
+*******************************************************************************/
+
+public class Main
+{
+	public static void main(String[] args) {
+		int arr[] = {3,5,7,9,10,90,100,130};
+		int target = 10;
+		System.out.println(ans(arr,target));
+	}
+	public static int ans(int[] arr, int t)
+	{
+	    int start = 0;
+	    int end = 1;
+	    while(t>arr[end])
+	    {
+	       int newStart = end+1;
+	       end = end+(end-start+1)*2;
+	       start = newStart;
+	    }
+	    return binarySearch(arr,t,start,end);
+	}
+	public static int binarySearch(int[] arr, int t, int s, int e)
+	{
+	     int start = s;
+	    int end = e;
+	    while(start<=end)
+	    {
+	        int mid = start + (end-start)/2;
+	        if(t>arr[mid])
+	        {
+	            start = mid+1;
+	        }
+	        else if (t<arr[mid])
+	        {
+	            end = mid - 1;
+	        }
+	        else
+	        {
+	           return mid;    
+	        }
+	    }
+	    return -1;
+	}
+}
